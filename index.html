@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Renault Duster PDI Master Blueprint</title>
+<title>Renault Duster PDI — Linear Inspection Checklist</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
@@ -113,22 +113,43 @@ input[type=text],textarea{border:0;border-bottom:1px solid #999;border-radius:0;
 .sn:not(.has){display:none}.ex{padding:8px}
 .dl li{padding:4px 8px;break-inside:avoid}.stop{background:#fff;color:var(--bad);border:2px solid var(--bad)}
 }
+
+/* Linear, single-column inspection layout */
+.ix{display:none!important}
+.route-note{margin-top:12px;color:#d5d8dc}
+main{max-width:820px;padding:8px 12px 100px}
+.blk{margin-top:20px}
+.sh{padding:0 4px 8px}
+.sheet{border:1px solid var(--line);border-radius:12px;overflow:hidden}
+.i{gap:8px;padding:12px}
+.b{max-width:360px}
+.t{font-size:16px}
+.critical-tag{display:inline-block;background:#b3261e;color:#fff;border-radius:5px;padding:2px 7px;margin:0 7px 4px 0;font-size:11px;font-weight:800;letter-spacing:.04em;vertical-align:2px}
+.verify-tag{display:inline-block;background:#f2c200;color:#17191c;border-radius:5px;padding:2px 7px;margin:0 7px 4px 0;font-size:11px;font-weight:800;letter-spacing:.04em;vertical-align:2px}
+.i.is-critical{border-left:5px solid #b3261e}
+.i.is-verify{border-left:5px solid #d5a900}
+@media print{
+  .route-note{display:block!important;color:#333}
+  .i.is-critical,.i.is-verify{border-left:3px solid #b3261e}
+  .critical-tag,.verify-tag{print-color-adjust:exact;-webkit-print-color-adjust:exact}
+}
+
 </style>
 </head>
 <body>
 <header class="hero">
 <svg class="topo" viewBox="0 0 800 320" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><defs><filter id="wob" x="-20%" y="-20%" width="140%" height="140%"><feTurbulence type="fractalNoise" baseFrequency="0.008 0.014" numOctaves="2" seed="7"/><feDisplacementMap in="SourceGraphic" scale="48"/></filter></defs><g fill="none" stroke="#f2c200" stroke-width="1.2" filter="url(#wob)"><ellipse cx="640" cy="130" rx="40" ry="24"/><ellipse cx="640" cy="130" rx="85" ry="52"/><ellipse cx="640" cy="130" rx="130" ry="80"/><ellipse cx="640" cy="130" rx="175" ry="108"/><ellipse cx="640" cy="130" rx="220" ry="136"/><ellipse cx="640" cy="130" rx="265" ry="164"/><ellipse cx="640" cy="130" rx="310" ry="192"/><ellipse cx="640" cy="130" rx="355" ry="220"/></g></svg>
 <div class="in">
-<h1>Renault Duster PDI Master Blueprint</h1>
+<h1>Renault Duster PDI</h1>
 <p class="var">Adventure Edition Turbo TCe 160 MT (Techno-based)</p>
 <p class="spec">1.3 L turbo-petrol, 163 PS, 6-speed manual · Dual-tone Pearl White / Stealth Black</p>
-<p class="how">Inspect the allocated car in daylight, before registration and before signing delivery acceptance.</p>
-<nav class="ix" id="ix" aria-label="Jump to section"></nav>
+<p class="how">Follow this checklist from top to bottom. Do not skip ahead. Complete PDI before registration and delivery acceptance.</p>
+<p class="how route-note">Inspection order: documents → exterior → wheels → engine → cabin → systems → underbody → road test → handover.</p>
 </div>
 </header>
 <div class="cos">
 <div class="co"><b>Not on this variant, so not checked:</b> Level 2 ADAS, 360° camera, ventilated or powered seats, leatherette, Google built-in, 10.25-inch cluster, 18-inch wheels, ambient lighting, paddle shifters and electronic parking brake (DCT only). If the dealer claims any of these, check the invoice.</div>
-<div class="co"><span class="v">verify</span>marks items reports disagree on: confirm against the official spec sheet and mark N/A if not fitted.</div>
+<div class="co"><b style="color:#b3261e">CRITICAL</b> = safety, identity, structural, mechanical or delivery-gate check. Stop and resolve serious defects before accepting the car.</div><div class="co"><b style="color:#9a7600">VERIFY VARIANT</b> = confirm fitment on the official Adventure TCe 160 MT specification sheet; mark N/A if not equipped.</div>
 <div class="co"><b>Saving the report:</b> Save as PDF opens your browser’s print dialog. Pick Save as PDF as the printer. Your entries stay on this device.</div>
 </div>
 <div class="bar"><div class="in"><div class="st"><span id="pg">0 / 0 checked</span><span id="df">0 defects</span></div><button id="pr" class="pb">Save as PDF</button><button id="rs" class="rb">Reset</button></div><div class="trk"><i id="fill"></i></div></div>
@@ -159,6 +180,64 @@ var SECS=[
 ];
 
 var NAMES=["Documents","Exterior","Adventure","Glass & lights","Sunroof","Tyres","Engine","Gearbox","Interior","Electronics","Safety","Climate","Underbody","Road test","Accessories","Insurance","Delivery","Red flags"];
+
+var CRITICAL=[
+"VIN / chassis number matches the allocated vehicle",
+"Engine number matches invoice and documents",
+"Manufacturing month and year confirmed",
+"No previous registration",
+"Not a demo, display or test-drive unit",
+"PDI completed before registration",
+"Black roof paint finish is even",
+"No overspray, repaint or polishing marks",
+"Windshield free from scratches, cracks, chips",
+"Spare size, load and speed rating compatible",
+"No engine oil leakage",
+"No coolant leakage",
+"No brake-fluid leakage",
+"No smell of fuel or burning oil",
+"No abnormal ticking, knocking or rattling",
+"Turbo and intake hoses undamaged",
+"Gears 1 to 6 engage smoothly",
+"No grinding during gear changes",
+"Seat belts retract; all buckles latch and release",
+"All six airbags accounted for",
+"Airbag warning light self-checks correctly",
+"ABS warning light self-checks correctly",
+"ESC warning light self-checks correctly",
+"No persistent check-engine or electrical warning",
+"OBD scan shows no unresolved fault codes",
+"No oil or fluid leaks",
+"Brake lines and hoses intact",
+"Brakes progressive, no judder or squeal",
+"VIN or engine number mismatch",
+"Structural damage, repaired chassis or accident signs",
+"Repainting without disclosure",
+"Airbag or ABS warning light stays on",
+"Unexplained OBD fault codes",
+"Engine oil, coolant or other fluid leakage",
+"Damaged tyres or wrong tyre specification",
+"Water ingress or damp interior",
+"Dealer refuses a proper PDI or pushes you to register first"
+];
+var VERIFY=[
+"ORVM electric folding works",
+"Sunroof opens and closes fully and smoothly",
+"Sunroof sunshade slides smoothly",
+"Powered tailgate opens and closes from the button",
+"Powered tailgate works from key / access card",
+"All four tyres are the specified make and size (17-inch)",
+"All four 17-inch alloy wheels free from scratches",
+"Promised 17-inch steel rim and tyre included",
+"10.1-inch touchscreen starts without errors",
+"7-inch TFT driver display shows information correctly",
+"Hill descent control switch / message works",
+"Front and side park assist works",
+"Blind-spot monitoring works",
+"Rear seat-belt reminders work",
+"ISOFIX anchor points present"
+];
+
 var S={r:{},n:{},f:{},p:{},sn:{}},T=0,$=function(s){return document.querySelector(s)};
 try{var l=JSON.parse(localStorage.getItem("pdi-duster2")||"{}");for(var k in l)S[k]=l[k]}catch(e){}
 function esc(s){return String(s||"").replace(/&/g,"&amp;").replace(/"/g,"&quot;").replace(/</g,"&lt;")}
@@ -177,12 +256,13 @@ SECS.forEach(function(s,i){
 nv+='<button type="button" class="ch" data-g="'+i+'" title="'+esc(ttl(i))+'"><b>'+num(i)+'</b> '+NAMES[i]+'</button>';
 h+='<section class="blk" id="s'+i+'"><header class="sh"><span class="no">'+num(i)+'</span><h2>'+ttl(i)+'</h2><span class="cnt" data-c="'+i+'"></span></header>'+(s[2]?'<p class="tip">'+s[2]+'</p>':'')+'<div class="sheet">';
 s[1].forEach(function(t,j){var id=i+"-"+j,r=S.r[id]||"",v=t.charAt(0)=="~";if(v)t=t.slice(1);T++;
-h+='<div class="i'+(S.n[id]?" hasn":"")+'" data-s="'+r+'"><div class="t">'+(v?'<span class="v">verify</span>':'')+t+'</div><div class="b" role="radiogroup">'+[["ok","✓"],["bad","✗"],["na","N/A"]].map(function(o){return '<label class="o '+o[0]+'"><input type="radio" name="'+id+'" value="'+o[0]+'"'+(r==o[0]?" checked":"")+'><span>'+o[1]+'</span></label>'}).join("")+'</div><button type="button" class="an">Add note</button><input type="text" class="nt" data-n="'+id+'" placeholder="Describe the defect or add a note" value="'+esc(S.n[id])+'"><span class="ps"></span></div>'});
+var isCritical=CRITICAL.indexOf(t)>=0, isVerify=v||VERIFY.indexOf(t)>=0;
+h+='<div class="i'+(S.n[id]?" hasn":"")+(isCritical?' is-critical':'')+(isVerify?' is-verify':'')+'" data-s="'+r+'"><div class="t">'+(isCritical?'<span class="critical-tag">CRITICAL</span>':(isVerify?'<span class="verify-tag">VERIFY VARIANT</span>':''))+t+'</div><div class="b" role="radiogroup">'+[["ok","✓"],["bad","✗"],["na","N/A"]].map(function(o){return '<label class="o '+o[0]+'"><input type="radio" name="'+id+'" value="'+o[0]+'"'+(r==o[0]?" checked":"")+'><span>'+o[1]+'</span></label>'}).join("")+'</div><button type="button" class="an">Add note</button><input type="text" class="nt" data-n="'+id+'" placeholder="Describe the defect or add a note" value="'+esc(S.n[id])+'"><span class="ps"></span></div>'});
 h+='<div class="ex"><div class="sn'+(S.sn[i]?" has":"")+'"><label>Section notes<textarea data-sn="'+i+'">'+esc(S.sn[i])+'</textarea></label></div>'+photo(i)+'</div></div></section>'});
 h+='<section class="blk"><header class="sh"><h2>PDI result sheet</h2></header><p class="tip">Record defects instead of ticking everything as passed.</p><div class="sheet">'+fields(R,"r_")+'</div></section>';
 h+='<section class="blk" id="ds"></section>';
 h+='<section class="blk"><header class="sh"><h2>Other photos and sign-off</h2></header><div class="sheet"><div class="ex" style="border:0">'+photo("x")+'</div><div class="fg" style="padding-top:0"><label>Inspector name<input type="text" data-f="who" value="'+esc(S.f.who)+'"></label><label>Signature / date<input type="text" data-f="sig" value="'+esc(S.f.sig)+'"></label></div></div></section>';
-$("#ix").innerHTML=nv;$("#app").innerHTML=h;
+$("#app").innerHTML=h;
 document.querySelectorAll("textarea").forEach(ag);upd()}
 function upd(){
 var d=0,n=0,L=[],stop=0,last=SECS.length-1;
@@ -209,7 +289,7 @@ else if(d.sn!==undefined){S.sn[d.sn]=t.value;t.closest(".sn").classList.toggle("
 later()});
 app.addEventListener("change",function(e){var t=e.target;if(t.dataset.p===undefined)return;var k=t.dataset.p;
 Array.prototype.slice.call(t.files).forEach(function(f){var fr=new FileReader;fr.onload=function(){var im=new Image;im.onload=function(){var s=Math.min(1,900/Math.max(im.width,im.height)),c=document.createElement("canvas");c.width=im.width*s;c.height=im.height*s;c.getContext("2d").drawImage(im,0,0,c.width,c.height);(S.p[k]=S.p[k]||[]).push(c.toDataURL("image/jpeg",.7));$("#th"+k).innerHTML=phtml(k);save()};im.src=fr.result};fr.readAsDataURL(f)});t.value=""});
-$("#ix").addEventListener("click",function(e){var b=e.target.closest("[data-g]");if(!b)return;var rm=window.matchMedia&&matchMedia("(prefers-reduced-motion: reduce)").matches;document.getElementById("s"+b.dataset.g).scrollIntoView({behavior:rm?"auto":"smooth",block:"start"})});
+/* Linear checklist: no section-jump navigation required. */
 $("#pr").onclick=function(){document.querySelectorAll("textarea").forEach(ag);try{window.print()}catch(e){}};
 var rt;$("#rs").onclick=function(){var b=this;if(!rt){b.textContent="Tap again to clear all";rt=setTimeout(function(){rt=0;b.textContent="Reset"},3500);return}
 clearTimeout(rt);rt=0;b.textContent="Reset";S={r:{},n:{},f:{},p:{},sn:{}};try{localStorage.removeItem("pdi-duster2")}catch(e){}render()};
