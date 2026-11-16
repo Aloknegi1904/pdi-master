@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Renault Duster PDI Master Blueprint</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f3f2ee;--sheet:#fff;--in:#f6f5f1;--ink:#16181b;--mut:#5d636b;--line:#e3e1da;--ok:#17784a;--bad:#c2352a;--badbg:#fdecea;--na:#68707a;--bar:#121417;--barT:#f5f4f0;--yel:#f2c200;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);color-scheme:light}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0e1012;--sheet:#181b1f;--in:#111316;--ink:#ecebe6;--mut:#9ba1a9;--line:#2b3036;--ok:#4cc790;--bad:#ff7a69;--badbg:#2e1815;--na:#9ba1a9;--bar:#08090a;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0e1012;--sheet:#181b1f;--in:#111316;--ink:#ecebe6;--mut:#9ba1a9;--line:#2b3036;--ok:#4cc790;--bad:#ff7a69;--badbg:#2e1815;--na:#9ba1a9;--bar:#08090a;color-scheme:dark}
+*{box-sizing:border-box}[hidden]{display:none!important}
+html{scroll-padding-top:calc(env(safe-area-inset-top,0px) + 76px)}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.45 "Source Sans 3","Segoe UI",system-ui,sans-serif}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--bar);z-index:30}
+button{font:inherit;cursor:pointer}
+:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
+.hero :focus-visible,.bar :focus-visible{outline-color:var(--yel)}
+.hero{background:var(--bar);color:var(--barT);position:relative;overflow:hidden}
+.topo{position:absolute;inset:0;width:100%;height:100%;opacity:.4}
+.hero .in{position:relative;max-width:780px;margin:0 auto;padding:30px 18px 22px}
+h1{font:700 clamp(36px,9vw,56px)/.98 "Barlow Condensed","Arial Narrow",system-ui,sans-serif;margin:0;letter-spacing:.01em}
+.var{font:600 24px/1.15 "Barlow Condensed","Arial Narrow",system-ui,sans-serif;color:var(--yel);margin:14px 0 4px}
+.spec{margin:0 0 6px;color:#cfd2d7;font-size:16px}
+.how{margin:0;color:#aeb3ba;font-size:15px}
+.ix{display:flex;flex-wrap:wrap;gap:7px;margin-top:20px}
+.ch{background:rgba(0,0,0,.25);border:1px solid rgba(255,255,255,.28);color:var(--barT);border-radius:999px;padding:6px 12px;font-size:14px;font-weight:600}
+.ch b{opacity:.6;margin-right:2px}
+.ch.done{border-color:#4cc790;background:rgba(76,199,144,.18)}.ch.done::after{content:" ✓";color:#4cc790}
+.ch.flag{border-color:#ff7a69;background:rgba(255,122,105,.2)}.ch.flag::after{content:" !";color:#ff7a69;font-weight:700}
+.cos{max-width:780px;margin:0 auto;padding:16px 14px 0;display:grid;gap:10px}
+.co{background:var(--sheet);border:1px solid var(--line);border-radius:12px;padding:11px 14px;font-size:15px;color:var(--mut)}
+.co b{color:var(--ink)}
+.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--bar);color:var(--barT);margin-top:18px}
+.bar .in{max-width:780px;margin:0 auto;padding:8px 14px;display:flex;align-items:center;gap:10px}
+.st{display:flex;flex-direction:column;line-height:1.2;flex:1;min-width:0}
+#pg{font-weight:700;font-size:15px}#df{font-size:13.5px;color:#aeb3ba}#df.has{color:#ff8a7a;font-weight:700}
+.trk{height:4px;background:rgba(255,255,255,.16)}.trk i{display:block;height:100%;width:0;background:var(--yel);transition:width .25s}
+.pb{background:var(--yel);color:#16181b;border:0;border-radius:10px;padding:10px 14px;font-weight:700;font-size:15px}
+.rb{background:transparent;color:var(--barT);border:1px solid rgba(255,255,255,.32);border-radius:10px;padding:9px 12px;font-weight:600;font-size:14.5px}
+#w{background:var(--bad);color:#fff;padding:8px 16px;font-size:14px;text-align:center}
+main{max-width:780px;margin:0 auto;padding:6px 0 90px}
+.blk{margin-top:30px}
+.sh{display:flex;align-items:baseline;gap:12px;padding:0 16px 10px}
+.no{font:700 36px/1 "Barlow Condensed","Arial Narrow",system-ui,sans-serif;color:var(--mut);opacity:.5;min-width:34px}
+h2{font:700 27px/1.1 "Barlow Condensed","Arial Narrow",system-ui,sans-serif;margin:0;letter-spacing:.01em}
+.cnt{margin-left:auto;font-size:13.5px;font-weight:700;color:var(--mut);border:1px solid var(--line);border-radius:999px;padding:2px 10px;white-space:nowrap}
+.cnt.done{color:var(--ok);border-color:var(--ok)}
+.tip{margin:0;padding:0 16px 12px;color:var(--mut);font-size:15px;max-width:62ch}
+.sheet{background:var(--sheet);border-block:1px solid var(--line)}
+.fg{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px;padding:16px}
+label{display:block;font-size:14px;font-weight:600;color:var(--mut)}
+input[type=text],textarea{display:block;width:100%;font:inherit;font-size:16px;color:var(--ink);background:var(--in);border:1px solid var(--line);border-radius:10px;padding:10px 12px;margin-top:6px}
+textarea{min-height:64px;resize:vertical;overflow:hidden}
+.i{display:grid;grid-template-columns:1fr;gap:10px;padding:14px 16px;border-top:1px solid var(--line);grid-template-areas:"t" "b" "an" "nt"}
+.i:first-child{border-top:0}
+.t{grid-area:t;line-height:1.35}
+.b{grid-area:b;display:flex;gap:8px}
+.o{flex:1;color:inherit}.o input{position:absolute;opacity:0;pointer-events:none}
+.o span{display:flex;align-items:center;justify-content:center;min-height:46px;border:1.5px solid var(--line);border-radius:10px;background:var(--sheet);font-size:16px;font-weight:700;color:var(--mut);cursor:pointer;user-select:none}
+.o.ok input:checked+span{background:var(--ok);border-color:var(--ok);color:#fff}
+.o.bad input:checked+span{background:var(--bad);border-color:var(--bad);color:#fff}
+.o.na input:checked+span{background:var(--na);border-color:var(--na);color:#fff}
+.o input:focus-visible+span{outline:2px solid var(--ink);outline-offset:2px}
+.i[data-s=ok] .t,.i[data-s=na] .t{color:var(--mut)}
+.i[data-s=bad]{background:var(--badbg);box-shadow:inset 4px 0 0 var(--bad)}
+.an{grid-area:an;justify-self:start;background:none;border:0;color:var(--mut);font-size:14px;font-weight:600;padding:0;text-decoration:underline;text-underline-offset:3px}
+.nt{grid-area:nt;display:none;margin:0;font-size:16px}
+.i[data-s=bad] .nt,.i.open .nt,.i.hasn .nt{display:block}
+.i[data-s=bad] .an,.i.open .an,.i.hasn .an{display:none}
+.ps{display:none}
+.v{display:inline-block;font-size:12px;font-weight:700;background:var(--yel);color:#16181b;border-radius:5px;padding:0 6px;margin-right:7px;vertical-align:1px}
+.ex{padding:16px;border-top:1px solid var(--line)}
+.th{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+.ph{margin-top:14px}.ph input[type=file]{display:none}
+.btn{display:inline-flex;align-items:center;gap:8px;border:1.5px solid var(--line);background:var(--sheet);color:var(--ink);border-radius:10px;padding:9px 14px;font-weight:600;font-size:15px;cursor:pointer}
+figure{position:relative;margin:0;break-inside:avoid}
+figure img{display:block;height:96px;max-width:100%;border-radius:8px;border:1px solid var(--line)}
+figure button{position:absolute;top:4px;right:4px;width:28px;height:28px;padding:0;background:rgba(0,0,0,.7);color:#fff;border:0;border-radius:50%;font-size:18px;line-height:1}
+.stop{margin:0 0 10px;padding:12px 16px;background:var(--bad);color:#fff;font-weight:700}
+.dl{list-style:none;margin:0;padding:0}
+.dl li{display:grid;grid-template-columns:2.6em 1fr;gap:2px 8px;padding:12px 16px;border-top:1px solid var(--line)}
+.dl li:first-child{border-top:0}
+.dn{font:700 20px/1.2 "Barlow Condensed","Arial Narrow",system-ui,sans-serif;color:var(--bad)}
+.dl em{grid-column:2;font-style:normal;color:var(--mut);font-size:15px}
+.dl li.rf .dt{font-weight:700}
+.none{margin:0;padding:16px;color:var(--mut)}
+@media (min-width:600px){.i{grid-template-columns:1fr auto;grid-template-areas:"t b" "an an" "nt nt";align-items:center}.o{flex:none}.o span{min-width:64px}}
+@media (min-width:800px){.sheet{border:1px solid var(--line);border-radius:14px;overflow:hidden}.sh,.tip{padding-inline:4px}}
+@media print{
+@page{margin:12mm}
+:root{--bg:#fff;--sheet:#fff;--in:#fff;--ink:#000;--mut:#444;--line:#bbb;--ok:#17784a;--bad:#b3261e;--badbg:#fff;color-scheme:light;padding:0}
+*{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+body{font-size:11pt;background:#fff;color:#000}
+body::before,.bar,#w,.ix,.cos,.tip,.an,.b,.topo,.ph .btn,figure button{display:none!important}
+.hero{background:#fff;color:#000;border-bottom:2px solid #000}.hero .in{padding:0 0 8px}
+h1{font-size:26pt}.var{color:#000;font-size:15pt}.spec,.how{color:#333;font-size:10pt}
+main{padding:0}.blk{margin-top:14px}
+.sh{padding:0 0 4px;break-after:avoid}.no{font-size:18pt;opacity:1;color:#000}h2{font-size:15pt}.cnt{border:0;padding:0}
+.sheet{border:1px solid #999;border-radius:0}.fg{padding:8px;grid-template-columns:1fr 1fr}
+input[type=text],textarea{border:0;border-bottom:1px solid #999;border-radius:0;padding:2px 0;background:none;color:#000}
+.i{display:flex;flex-wrap:wrap;justify-content:space-between;gap:2px 12px;padding:4px 8px;break-inside:avoid}
+.t{flex:1;font-size:10.5pt;color:#000!important}
+.ps{display:block;order:1;font-weight:700;min-width:60px;text-align:right}
+.ps::after{content:"—";color:#999}
+.i[data-s=ok] .ps::after{content:"OK";color:var(--ok)}
+.i[data-s=bad] .ps::after{content:"DEFECT";color:var(--bad)}
+.i[data-s=na] .ps::after{content:"N/A";color:#555}
+.i[data-s=bad]{box-shadow:none;background:#fff}.i[data-s=bad] .t{font-weight:700}
+.i:not(.hasn) .nt{display:none!important}
+.i.hasn .nt{order:2;flex-basis:100%;border:0;padding:0 0 0 12px;font-size:10pt}
+.sn:not(.has){display:none}.ex{padding:8px}
+.dl li{padding:4px 8px;break-inside:avoid}.stop{background:#fff;color:var(--bad);border:2px solid var(--bad)}
+}
+</style>
+</head>
+<body>
+<header class="hero">
+<svg class="topo" viewBox="0 0 800 320" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><defs><filter id="wob" x="-20%" y="-20%" width="140%" height="140%"><feTurbulence type="fractalNoise" baseFrequency="0.008 0.014" numOctaves="2" seed="7"/><feDisplacementMap in="SourceGraphic" scale="48"/></filter></defs><g fill="none" stroke="#f2c200" stroke-width="1.2" filter="url(#wob)"><ellipse cx="640" cy="130" rx="40" ry="24"/><ellipse cx="640" cy="130" rx="85" ry="52"/><ellipse cx="640" cy="130" rx="130" ry="80"/><ellipse cx="640" cy="130" rx="175" ry="108"/><ellipse cx="640" cy="130" rx="220" ry="136"/><ellipse cx="640" cy="130" rx="265" ry="164"/><ellipse cx="640" cy="130" rx="310" ry="192"/><ellipse cx="640" cy="130" rx="355" ry="220"/></g></svg>
+<div class="in">
+<h1>Renault Duster PDI Master Blueprint</h1>
+<p class="var">Adventure Edition Turbo TCe 160 MT (Techno-based)</p>
+<p class="spec">1.3 L turbo-petrol, 163 PS, 6-speed manual · Dual-tone Pearl White / Stealth Black</p>
+<p class="how">Inspect the allocated car in daylight, before registration and before signing delivery acceptance.</p>
+<nav class="ix" id="ix" aria-label="Jump to section"></nav>
+</div>
+</header>
+<div class="cos">
+<div class="co"><b>Not on this variant, so not checked:</b> Level 2 ADAS, 360° camera, ventilated or powered seats, leatherette, Google built-in, 10.25-inch cluster, 18-inch wheels, ambient lighting, paddle shifters and electronic parking brake (DCT only). If the dealer claims any of these, check the invoice.</div>
+<div class="co"><span class="v">verify</span>marks items reports disagree on: confirm against the official spec sheet and mark N/A if not fitted.</div>
+<div class="co"><b>Saving the report:</b> Save as PDF opens your browser’s print dialog. Pick Save as PDF as the printer. Your entries stay on this device.</div>
+</div>
+<div class="bar"><div class="in"><div class="st"><span id="pg">0 / 0 checked</span><span id="df">0 defects</span></div><button id="pr" class="pb">Save as PDF</button><button id="rs" class="rb">Reset</button></div><div class="trk"><i id="fill"></i></div></div>
+<div id="w" hidden>Storage is full: new entries may not survive a reload. Save as PDF now.</div>
+<main id="app"></main>
+<script>
+var F=[["vin","VIN / chassis no."],["eng","Engine no."],["mfg","Manufacturing month / year"],["odo","Odometer (km)"],["date","PDI date"],["dealer","Dealership / location"],["rep","Renault representative"],["reg","Registration no. (if available)"]];
+var R=[["tyre","Tyre manufacturing dates"],["bat","Battery manufacturing date"],["obd","OBD scan result"],["paint","Paint / body defects"],["mech","Mechanical defects"],["elec","Electronics defects"],["miss","Missing accessories"],["rect","Rectification promised by (name, date)"]];
+var SECS=[
+["1. Documents and vehicle identity",["Invoice and booking say Adventure Turbo TCe 160 MT","Colour is Pearl White with Stealth Black roof (dual-tone)","VIN / chassis number matches the allocated vehicle","Engine number matches invoice and documents","Manufacturing month and year confirmed","VIN plate and chassis stamping intact and consistent","Invoice has correct buyer name and address","No previous registration","Not a demo, display or test-drive unit","Renault warranty start date confirmed","Extended warranty (if bought) documented","PDI completed before registration"],"Photograph the VIN, odometer, engine number and manufacturing labels."],
+["2. Exterior, paint and bodywork",["Bonnet: scratches, dents, paint imperfections","Front and rear bumper alignment","Both front fenders and both rear quarter panels","All four doors: dents and scratches","Roof: dents and scratches","Black roof paint finish is even","Boundary between white and black paint is clean","Door handles and ORVM housings","Wheel arches and cladding","Side skirts and lower body cladding","Front and rear skid plates fitted and secure","Roof rails fitted and secure","Shark-fin antenna fitted","Grille alignment","Bonnet and door gaps uniform","No overspray, repaint or polishing marks","All painted surfaces checked in natural daylight"],"Look at reflections from different angles. A wavy reflection or sudden texture change can indicate a repair or repaint."],
+["3. Adventure Edition identifiers",["C-pillar topographic contour decals on both sides: aligned, no bubbles or peeling","Adventure badging present","Front door inserts with Leh coordinates (34.27 N, 77.60 E)","Adventure embellishers fitted","Premium Adventure floor mats supplied"],"Cosmetic items that set this edition apart from a regular Techno. All must be present and neatly finished."],
+["4. Glass, lights and visibility",["Windshield free from scratches, cracks, chips","Rear windshield and all door windows undamaged","Glass markings and manufacturing codes checked","Full LED headlamps: low beam and high beam work","Auto headlamps switch on in low light","DRLs work","Fog lamps work","Puddle lamps work","Connected LED tail lamps work","Front and rear indicators work","Hazard lights work","Reverse lights work","Brake lights and third brake light work","Number plate illumination works","Front wipers and washer jets work","Rear wiper and rear washer work","Rear defogger works","ORVM electric adjustment works","~ORVM electric folding works"]],
+["5. Panoramic sunroof and powered tailgate",["Sunroof opens and closes fully and smoothly","Sunroof sunshade slides smoothly","Sunroof stops or reverses on obstruction (anti-pinch)","Sunroof glass free from scratches, chips, distortion","No rattles or wind noise with sunroof closed","No water leak around sunroof seals (check headliner and edges)","Powered tailgate opens and closes from the button","Powered tailgate works from key / access card","Tailgate stops or reverses on obstruction","Tailgate latches fully with no rattle","Boot lamp works"],"If possible, ask for a quick water spray test over the sunroof before delivery."],
+["6. Tyres, wheels and spare wheel",["All four tyres are the specified make and size (17-inch)","Tyre manufacturing dates checked (note on result sheet)","No cuts, bulges or sidewall damage","Tread free of damage and foreign objects","All four 17-inch alloy wheels free from scratches","Wheel bolts present and tight","Tyre pressure matches Renault cold pressure","TPMS shows no warning after setup","Spare wheel present","Promised 17-inch steel rim and tyre included","Spare size, load and speed rating compatible","Jack and handle present","Wheel spanner present","Tow hook and other tools present","Spare wheel securing mechanism works"],"Do not assume the spare is full-size just because the rim is 17 inches. Ask the dealer to confirm full-size or temporary."],
+["7. Engine bay and 1.3 TCe 160 turbo",["Engine bay clean, no signs of damage","No engine oil leakage","No coolant leakage","No brake-fluid leakage","No loose or disconnected connectors","Wiring harnesses properly secured","Battery terminals tight and corrosion-free","Battery manufacturing date checked","Coolant level in range","Engine oil level correct","Brake fluid level correct","Washer fluid filled","No smell of fuel or burning oil","No abnormal vibration at idle","No ticking, knocking or rattling","No abnormal exhaust smoke","Turbo and intake hoses undamaged","No fluid seepage around hoses and connections","Cooling fan operates when required"],"Cold start: ask the dealer not to start the engine before you arrive. Start it yourself after checking the bay, listen for noises and watch warning lights."],
+["8. Clutch and 6-speed manual gearbox",["Clutch pedal operates smoothly","No squeaking from clutch pedal","Clutch bite point feels consistent","Clutch pedal returns fully","Gears 1 to 6 engage smoothly","Reverse engages without abnormal resistance","No grinding during gear changes","No abnormal gearbox noise","No excessive play in gear lever","No abnormal vibration through gear lever","Accelerator responds progressively","No hesitation or jerking in normal acceleration","No drivetrain vibration during acceleration"],"Judge the clutch bite point on the road test, not only while stationary."],
+["9. Interior and cabin",["Dashboard: no scratches or loose trim","Steering wheel finish intact","Steering tilt and telescopic adjustment works","Steering buttons work","Horn works","Driver and passenger seat adjustment works","Rear seats lock properly and fold properly","Seat belts retract; all buckles latch and release","Headrests present and adjustable","Door trims properly fitted","All four doors open and close smoothly","Central locking works","Child locks work","All four power windows work, incl. auto and anti-pinch","Glovebox opens and closes","Armrest and storage compartments work","Cup holders intact","Parcel tray / boot cover present","Carpets dry and clean","No water stains, damp smell or flood signs","Interior lights work","Sun visors work"]],
+["10. Infotainment and electronics",["10.1-inch touchscreen starts without errors","Touchscreen responds across all areas","No dead pixels or display defects","Wireless Android Auto connects","Wireless Apple CarPlay connects","Bluetooth pairing works","Connected car services activated (My Renault app)","USB ports work","12V socket works","Each speaker works, no distortion at moderate volume","Steering audio controls work","7-inch TFT driver display shows information correctly","Trip computer resets correctly","Cruise control engages and holds speed","Speed limiter works","Remote keyless entry works","Hands-free access card: unlock, lock and start work","Both keys / access cards supplied and functional","Warning lights self-check and go off as expected","No persistent check-engine or electrical warning","OBD scan shows no unresolved fault codes"]],
+["11. Safety systems",["All six airbags accounted for (no SRS fault)","Airbag warning light self-checks correctly","ABS warning light self-checks correctly","ESC warning light self-checks correctly","Traction control works","Hill hold assist works","Hill descent control switch / message works","Rear parking camera works, image clear and aligned","Rear parking sensors work","~Front and side park assist works","~Blind-spot monitoring works","TPMS works","Front seat-belt reminders work","~Rear seat-belt reminders work","~ISOFIX anchor points present","Handbrake lever holds the car (manual handbrake on MT)","Emergency equipment present"],"Never accept an airbag warning light that has been disabled or concealed."],
+["12. Climate control",["AC compressor engages normally","Cooling effective after system stabilises","Cooling checked at idle and during a short drive","Dual-zone: driver and passenger temperatures set independently","Automatic mode holds set temperature","All blower speeds work, no abnormal noise","Airflow from front and rear vents adequate","Fresh-air and recirculation modes work","Front defogging works","No unpleasant smell from vents","No abnormal vibration from AC system"],"Run the AC for 10 to 15 minutes. Do not judge it by the first few seconds."],
+["13. Underbody, suspension and brakes",["No visible impact damage underneath","Skid plates undamaged and tight","No corrosion or water damage","No oil or fluid leaks","Engine sump and gearbox casing intact","Exhaust properly secured","Suspension components undamaged","Shock absorbers show no leakage","Steering components secured","Brake lines and hoses intact","Floor pan undamaged","No previous welding or structural repair"],"Ask the dealer to put the car on a lift."],
+["14. Road test",["Engine starts without difficulty","Idles smoothly","Steering straight on a level road","No abnormal steering play or vibration","Does not pull left or right","Clutch engagement smooth","All six gears and reverse engage smoothly","Acceleration smooth and progressive","Turbo responds without abnormal hesitation","No abnormal engine or gearbox noise","No suspension knocking over speed breakers","No excessive body vibration or wind noise","Brakes progressive, no judder or squeal","Cruise control works on a clear road","Reverse camera and sensors work while reversing","No warning lights during the drive"],"Take the Renault representative along; use normal roads with a few speed breakers. No hard acceleration or emergency braking on public roads."],
+["15. Accessories",["17-inch steel spare rim with tyre","Steering wheel cover","3D floor mats (in addition to Adventure mats)","Mud flap kit","Door edge guards","Number plate holder / cover","Temple","Perfume","Key ring","Tissue box","Document folder / bag","Wind deflectors (if purchased)","Screen guard (if purchased)","Car cover (if purchased)"],"Seat covers or accessories must not obstruct side airbags. Avoid aftermarket electrical fitting at delivery."],
+["16. Insurance verification",["Policy structure: 1-year own damage + 2-year third-party (if agreed)","Zero Depreciation included","Return to Invoice included","Key Loss Replacement included","Engine Protection included","IDV correct","Policyholder details correct","Registration and chassis numbers correct once available","Cashless garage network checked","Exclusions and claim limits understood"]],
+["17. Final delivery checks",["Odometer reading photographed","Fuel level checked","Both keys and access card handed over","Owner’s manual received","Warranty booklet / details received","Service schedule explained","RSA contact details received","Insurance policy PDF received","Invoice received","Registration process explained","All promised accessories physically received","All pending issues written on the delivery acknowledgement","No blank forms signed","Delivery acceptance signed only after inspection"]],
+["18. Red flags: stop delivery if any is found",["VIN or engine number mismatch","Structural damage, repaired chassis or accident signs","Repainting without disclosure","Airbag or ABS warning light stays on","Unexplained OBD fault codes","Engine oil, coolant or other fluid leakage","Damaged tyres or wrong tyre specification","Water ingress or damp interior (check sunroof area)","Promised spare wheel or major accessory missing","Dealer refuses a proper PDI or pushes you to register first"],"Mark Defect (✗) when a red flag is FOUND, OK (✓) when it is not."]
+];
+
+var NAMES=["Documents","Exterior","Adventure","Glass & lights","Sunroof","Tyres","Engine","Gearbox","Interior","Electronics","Safety","Climate","Underbody","Road test","Accessories","Insurance","Delivery","Red flags"];
+var S={r:{},n:{},f:{},p:{},sn:{}},T=0,$=function(s){return document.querySelector(s)};
+try{var l=JSON.parse(localStorage.getItem("pdi-duster2")||"{}");for(var k in l)S[k]=l[k]}catch(e){}
+function esc(s){return String(s||"").replace(/&/g,"&amp;").replace(/"/g,"&quot;").replace(/</g,"&lt;")}
+function save(){try{localStorage.setItem("pdi-duster2",JSON.stringify(S))}catch(e){$("#w").hidden=false}}
+function num(i){return SECS[i][0].split(". ")[0]}
+function ttl(i){return SECS[i][0].slice(SECS[i][0].indexOf(". ")+2)}
+function phtml(k){return (S.p[k]||[]).map(function(d,i){return '<figure><img alt="Inspection photo" src="'+d+'"><button data-x="'+k+':'+i+'" aria-label="Remove photo">×</button></figure>'}).join("")}
+var CAM='<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8h3l2-3h6l2 3h3v11H4z"/><circle cx="12" cy="13" r="3.5"/></svg>';
+function photo(k){return '<div class="ph"><label class="btn">'+CAM+'Add photo<input type="file" accept="image/*" multiple data-p="'+k+'"></label><div class="th" id="th'+k+'">'+phtml(k)+'</div></div>'}
+function fields(a,p){return '<div class="fg">'+a.map(function(x){var key=p+x[0];return '<label>'+x[1]+'<input type="text" data-f="'+key+'" value="'+esc(S.f[key])+'"></label>'}).join("")+'</div>'}
+function ag(t){t.style.height="auto";t.style.height=(t.scrollHeight+2)+"px"}
+function render(){
+var h='<section class="blk"><header class="sh"><h2>Vehicle details</h2></header><div class="sheet">'+fields(F,"")+'</div></section>',nv="";
+T=0;
+SECS.forEach(function(s,i){
+nv+='<button type="button" class="ch" data-g="'+i+'" title="'+esc(ttl(i))+'"><b>'+num(i)+'</b> '+NAMES[i]+'</button>';
+h+='<section class="blk" id="s'+i+'"><header class="sh"><span class="no">'+num(i)+'</span><h2>'+ttl(i)+'</h2><span class="cnt" data-c="'+i+'"></span></header>'+(s[2]?'<p class="tip">'+s[2]+'</p>':'')+'<div class="sheet">';
+s[1].forEach(function(t,j){var id=i+"-"+j,r=S.r[id]||"",v=t.charAt(0)=="~";if(v)t=t.slice(1);T++;
+h+='<div class="i'+(S.n[id]?" hasn":"")+'" data-s="'+r+'"><div class="t">'+(v?'<span class="v">verify</span>':'')+t+'</div><div class="b" role="radiogroup">'+[["ok","✓"],["bad","✗"],["na","N/A"]].map(function(o){return '<label class="o '+o[0]+'"><input type="radio" name="'+id+'" value="'+o[0]+'"'+(r==o[0]?" checked":"")+'><span>'+o[1]+'</span></label>'}).join("")+'</div><button type="button" class="an">Add note</button><input type="text" class="nt" data-n="'+id+'" placeholder="Describe the defect or add a note" value="'+esc(S.n[id])+'"><span class="ps"></span></div>'});
+h+='<div class="ex"><div class="sn'+(S.sn[i]?" has":"")+'"><label>Section notes<textarea data-sn="'+i+'">'+esc(S.sn[i])+'</textarea></label></div>'+photo(i)+'</div></div></section>'});
+h+='<section class="blk"><header class="sh"><h2>PDI result sheet</h2></header><p class="tip">Record defects instead of ticking everything as passed.</p><div class="sheet">'+fields(R,"r_")+'</div></section>';
+h+='<section class="blk" id="ds"></section>';
+h+='<section class="blk"><header class="sh"><h2>Other photos and sign-off</h2></header><div class="sheet"><div class="ex" style="border:0">'+photo("x")+'</div><div class="fg" style="padding-top:0"><label>Inspector name<input type="text" data-f="who" value="'+esc(S.f.who)+'"></label><label>Signature / date<input type="text" data-f="sig" value="'+esc(S.f.sig)+'"></label></div></div></section>';
+$("#ix").innerHTML=nv;$("#app").innerHTML=h;
+document.querySelectorAll("textarea").forEach(ag);upd()}
+function upd(){
+var d=0,n=0,L=[],stop=0,last=SECS.length-1;
+SECS.forEach(function(s,i){var sd=0,sn=0;
+s[1].forEach(function(t,j){var id=i+"-"+j,r=S.r[id];if(r)sn++;if(r=="bad"){sd++;if(i==last)stop++;L.push('<li'+(i==last?' class="rf"':'')+'><span class="dn">'+num(i)+'</span><span class="dt">'+t.replace(/^~/,"")+'</span>'+(S.n[id]?'<em>'+esc(S.n[id])+'</em>':'')+'</li>')}});
+n+=sn;d+=sd;
+var c=$('[data-c="'+i+'"]'),g=$('[data-g="'+i+'"]'),ok=sn==s[1].length;
+if(c){c.textContent=sn+" / "+s[1].length;c.classList.toggle("done",ok)}
+if(g){g.classList.toggle("done",ok&&!sd);g.classList.toggle("flag",sd>0)}});
+$("#pg").textContent=n+" / "+T+" checked";
+$("#df").textContent=d+(d==1?" defect":" defects");$("#df").className=d?"has":"";
+$("#fill").style.width=(T?Math.round(n/T*100):0)+"%";
+$("#ds").innerHTML='<header class="sh"><h2>Defect summary ('+d+')</h2></header>'+(stop?'<div class="stop">Red flag found. Do not take delivery until it is resolved in writing.</div>':'')+'<div class="sheet">'+(d?'<ul class="dl">'+L.join("")+'</ul>':'<p class="none">No defects marked.</p>')+'</div>'}
+var tm;function later(){upd();clearTimeout(tm);tm=setTimeout(save,300)}
+var app=$("#app");
+app.addEventListener("click",function(e){var t=e.target;
+if(t.type=="radio"){var n=t.name,v=t.value,row=t.closest(".i");if(S.r[n]==v){delete S.r[n];setTimeout(function(){t.checked=false},0);row.dataset.s=""}else{S.r[n]=v;row.dataset.s=v}later()}
+if(t.classList.contains("an")){var r2=t.closest(".i");r2.classList.add("open");r2.querySelector(".nt").focus()}
+if(t.dataset.x){var a=t.dataset.x.split(":");S.p[a[0]].splice(+a[1],1);$("#th"+a[0]).innerHTML=phtml(a[0]);save()}});
+app.addEventListener("input",function(e){var t=e.target,d=t.dataset;
+if(d.f!==undefined)S.f[d.f]=t.value;
+else if(d.n!==undefined){S.n[d.n]=t.value;t.closest(".i").classList.toggle("hasn",!!t.value)}
+else if(d.sn!==undefined){S.sn[d.sn]=t.value;t.closest(".sn").classList.toggle("has",!!t.value);ag(t)}
+later()});
+app.addEventListener("change",function(e){var t=e.target;if(t.dataset.p===undefined)return;var k=t.dataset.p;
+Array.prototype.slice.call(t.files).forEach(function(f){var fr=new FileReader;fr.onload=function(){var im=new Image;im.onload=function(){var s=Math.min(1,900/Math.max(im.width,im.height)),c=document.createElement("canvas");c.width=im.width*s;c.height=im.height*s;c.getContext("2d").drawImage(im,0,0,c.width,c.height);(S.p[k]=S.p[k]||[]).push(c.toDataURL("image/jpeg",.7));$("#th"+k).innerHTML=phtml(k);save()};im.src=fr.result};fr.readAsDataURL(f)});t.value=""});
+$("#ix").addEventListener("click",function(e){var b=e.target.closest("[data-g]");if(!b)return;var rm=window.matchMedia&&matchMedia("(prefers-reduced-motion: reduce)").matches;document.getElementById("s"+b.dataset.g).scrollIntoView({behavior:rm?"auto":"smooth",block:"start"})});
+$("#pr").onclick=function(){document.querySelectorAll("textarea").forEach(ag);try{window.print()}catch(e){}};
+var rt;$("#rs").onclick=function(){var b=this;if(!rt){b.textContent="Tap again to clear all";rt=setTimeout(function(){rt=0;b.textContent="Reset"},3500);return}
+clearTimeout(rt);rt=0;b.textContent="Reset";S={r:{},n:{},f:{},p:{},sn:{}};try{localStorage.removeItem("pdi-duster2")}catch(e){}render()};
+render();
+</script>
+</body>
+</html>
